@@ -5,7 +5,6 @@ import Stripe from "stripe"
 
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
 
-//placing user order in frontend
 
 const placeOrder=async (req,res)=>{
     const frontend_url="http://localhost:5175"
@@ -19,18 +18,17 @@ const placeOrder=async (req,res)=>{
         await newOrder.save();
         await userModel.findByIdAndUpdate(req.body.userId,{cartData:{}})
 
-        //stripe payment link
         const line_items=req.body.items.map((item)=>({
           price_data:{
             currency:"inr",
             product_data:{
               name:item.name
             },
-            unit_amount:item.price*100*80    //to convert 100 for dollar 80 to inr multiplied
+            unit_amount:item.price*100*80    
           },
           quantity:item.quantity
         }))
-        //to push delivery charges
+        
         line_items.push({
             price_data:{
                 currency:"inr",
@@ -71,7 +69,7 @@ const verifyOrder=async(req,res)=>{
       res.json({success:false,message:"error"})
   }
 }
-//create user order for frontend
+
 const userOrders=async (req,res)=>{
    try {
      const orders=await orderModel.find({userId:req.body.userId})
@@ -81,10 +79,10 @@ const userOrders=async (req,res)=>{
     response.json({success:false,message:"error"})
    }
 }
-//orders to view in admin panel made by users
+
 const listOrders=async(req,res)=>{
     try {
-      const orders=await orderModel.find({})           //we get all data of orders
+      const orders=await orderModel.find({})          
       res.json({success:true,data:orders})
     } catch (error) {
       console.log(error)
@@ -92,7 +90,6 @@ const listOrders=async(req,res)=>{
     }
 }
 
-//api for updating order status
 const updateStatus=async (req,res)=>{
        try {
            await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})

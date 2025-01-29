@@ -22,7 +22,6 @@ const addFood=async (req,res)=>{
   }
 }
 
-//all  food list
 
 
 const listFood=async(req,res)=>{
@@ -37,7 +36,7 @@ const listFood=async(req,res)=>{
    }
 }
 
-//remove food list
+
 const removeFood=async(req,res)=>{
   try{
     const food=await foodModel.findById(req.body.id);
