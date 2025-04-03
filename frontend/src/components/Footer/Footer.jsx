@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-content-left">
             <img src={assets.quick} alt=""/>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+            <p> Get your favorite meals delivered in under 30 minutes!.💰 Enjoy 50% OFF on your first order! 🎁 Get free delivery on orders above ₹199! 📍 Live order tracking available</p>
             <div className="footer-social-icons">
                 <img src={assets.facebook_icon} alt=""/>
                 <img src={assets.twitter_icon} alt=""/>
